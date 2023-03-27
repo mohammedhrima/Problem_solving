@@ -1,3 +1,4 @@
+
 contest, solve = [int(x) for x in input("").split()]
 
 problems = [int(x) for x in input("").split()]
