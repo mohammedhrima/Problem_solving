@@ -1,0 +1,1 @@
++ having fun at atcoder: https://atcoder.jp

@@ -1,6 +1,8 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "ratio": "c"
+        "*.css": "tailwindcss",
+        "ratio": "c",
+        "ostream": "cpp"
     }
 }

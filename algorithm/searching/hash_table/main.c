@@ -22,9 +22,7 @@ void insert(HashTable *table, int key)
 {
     int index = hash(key);
     while (table[index].value == true && table[index].key != key)
-    {
         index = (index + 1) % TABLE_SIZE;
-    }
     table[index].key = key;
     table[index].value = true;
 }
@@ -36,9 +34,7 @@ bool contains(HashTable *table, int key)
     while (table[index].value != false)
     {
         if (table[index].key == key)
-        {
             return true;
-        }
         index = (index + 1) % TABLE_SIZE;
     }
     return false;
@@ -52,9 +48,7 @@ bool has_sum_of_6(int nums[], int size)
     {
         int diff = 6 - nums[i];
         if (contains(table, diff))
-        {
             return true;
-        }
         insert(table, nums[i]);
     }
     return false;
@@ -64,15 +58,11 @@ bool has_sum_of_6(int nums[], int size)
 int main()
 {
     printf("%d\n", abs(-7));
-    int nums[] = {-1,7, 3, 4, 301, 5};
+    int nums[] = {-1, 7, 3, 4, 301, 5};
     int size = sizeof(nums) / sizeof(int);
     if (has_sum_of_6(nums, size))
-    {
         printf("The list contains two numbers that add up to 6\n");
-    }
     else
-    {
         printf("The list does not contain two numbers that add up to 6\n");
-    }
     return 0;
 }
