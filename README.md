@@ -1,1 +1,1 @@
-+ having fun at atcoder: https://atcoder.jp
++ practicing problem solving in Atcoder: https://atcoder.jp
