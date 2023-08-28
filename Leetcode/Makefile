@@ -1,11 +1,11 @@
 # Define the compiler
-CC = gcc
+CC = gcc -fsanitize=address -g3
 
 # Explicitly define the source file
 
 # Name of the output
 OUTPUTS = a.out
-SOURCES = 459.\ Repeated\ Substring\ Pattern.c
+SOURCES = 605.Can_Place_Flowers.c
 
 
 $(OUTPUTS): $(SOURCES)
