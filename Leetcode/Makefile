@@ -1,11 +1,12 @@
 # Define the compiler
-CC = gcc -fsanitize=address -g3
+# CC = gcc -fsanitize=address -fsanitize=null -g3
+CC = gcc
 
 # Explicitly define the source file
 
 # Name of the output
-OUTPUTS = a.out
-SOURCES = 605.Can_Place_Flowers.c
+OUTPUTS = exe
+SOURCES = 100.Same_Tree.c
 
 
 $(OUTPUTS): $(SOURCES)
@@ -14,6 +15,8 @@ $(OUTPUTS): $(SOURCES)
 all: $(OUTPUTS)
 clean:
 	rm -f $(OUTPUTS)
+
+fclean: clean
 
 re: clean all
 .PHONY: all clean
