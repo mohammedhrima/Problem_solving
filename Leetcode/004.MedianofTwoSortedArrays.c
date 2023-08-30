@@ -1,6 +1,7 @@
+
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 
 void mergeSort(int *array, int len)
 {
@@ -50,24 +51,27 @@ void mergeSort(int *array, int len)
     }
 }
 
+double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2, int nums2Size)
+{
+    int *array = calloc(nums1Size + nums2Size + 1, sizeof(int));
+    memcpy(array, nums1, nums1Size * sizeof(int));
+    memcpy(array + nums1Size, nums2, nums2Size * sizeof(int));
+    int len = nums1Size + nums2Size;
+    mergeSort(array, len);
+    double ret;
+    if (len % 2)
+        ret = (double)(array[len / 2]);
+    else
+        ret = (double)(array[len / 2] + array[len / 2 - 1]) / 2;
+    free(array);
+    return ret;
+}
 
 int main(void)
 {
-    int array[] = {1, 3, 5, 1, 7, 4, 4, 4, 0, 2, 6, 0};
-    int len = sizeof(array) / sizeof(int);
-    int i = 0;
-    while (i < len)
-    {
-        printf("%d ", array[i]);
-        i++;
-    }
-    printf("\n");
-    mergeSort(array, len);
-    i = 0;
-    while (i < len)
-    {
-        printf("%d ", array[i]);
-        i++;
-    }
-    printf("\n");
+    int arr1[] = {1, 3};
+    int arr2[] = {2};
+    int len1 = sizeof(arr1) / sizeof(int);
+    int len2 = sizeof(arr2) / sizeof(int);
+    printf("%f\n", findMedianSortedArrays(arr1, len1, arr2, len2));
 }
