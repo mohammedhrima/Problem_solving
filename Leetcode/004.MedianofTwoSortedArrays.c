@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void mergeSort(int *array, int len)
+void mergeSort2(int *array, int len)
 {
     if (len > 1)
     {
@@ -13,8 +13,8 @@ void mergeSort(int *array, int len)
         memcpy(right, array + len / 2, sizeof(int) * (len / 2 + len % 2));
 
         // recursion
-        mergeSort(left, len / 2);
-        mergeSort(right, len / 2 + len % 2);
+        mergeSort2(left, len / 2);
+        mergeSort2(right, len / 2 + len % 2);
 
         // merge
         int i = 0;
@@ -57,7 +57,7 @@ double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2, int nums2Si
     memcpy(array, nums1, nums1Size * sizeof(int));
     memcpy(array + nums1Size, nums2, nums2Size * sizeof(int));
     int len = nums1Size + nums2Size;
-    mergeSort(array, len);
+    mergeSort2(array, len);
     double ret;
     if (len % 2)
         ret = (double)(array[len / 2]);
