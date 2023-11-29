@@ -53,13 +53,13 @@ Node *recursive_insertion(Node *node, int value)
     return node;
 }
 
-void inorder(Node *node)
+void print_inorder(Node *node)
 {
     if (node)
     {
-        inorder(node->left);
+        print_inorder(node->left);
         std::cout << (void *)node << " : " << node->value << std::endl;
-        inorder(node->right);
+        print_inorder(node->right);
     }
 }
 
@@ -98,7 +98,7 @@ int main(void)
         node = recursive_insertion(node, nums[i]);
 
     std::cout << "node : " << std::endl;
-    inorder(node);
+    print_inorder(node);
     std::cout << std::endl;
 
     int value = nums[len / 2];

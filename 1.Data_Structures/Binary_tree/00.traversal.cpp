@@ -57,13 +57,13 @@ Node *insert(Node *node, int value)
     return node;
 }
 
-void inorder(Node *node)
+void print_inorder(Node *node)
 {
     if (node)
     {
-        inorder(node->left);
+        print_inorder(node->left);
         std::cout << node->value << " ";
-        inorder(node->right);
+        print_inorder(node->right);
     }
 }
 
@@ -111,7 +111,7 @@ int main(void)
     std::cout << node->value << std::endl;
 
     std::cout << "Inorder   : ";
-    inorder(node);
+    print_inorder(node);
     std::cout << std::endl;
 
     std::cout << "Preorder  : ";

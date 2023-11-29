@@ -79,13 +79,13 @@ Node *iterative_insertion(Node *node, int value)
     return node;
 }
 
-void inorder(Node *node)
+void print_inorder(Node *node)
 {
     if (node)
     {
-        inorder(node->left);
+        print_inorder(node->left);
         std::cout << node->value << " ";
-        inorder(node->right);
+        print_inorder(node->right);
     }
 }
 
@@ -115,10 +115,10 @@ int main(void)
     }
 
     std::cout << "node0 : ";
-    inorder(node0);
+    print_inorder(node0);
     std::cout << std::endl;
     std::cout << "node1 : ";
-    inorder(node1);
+    print_inorder(node1);
     std::cout << std::endl;
 
     free_node(node0);

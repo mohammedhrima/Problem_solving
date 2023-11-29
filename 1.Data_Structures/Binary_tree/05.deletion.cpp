@@ -53,66 +53,63 @@ Node *recursive_insertion(Node *node, int value)
     return node;
 }
 
-void inorder(Node *node)
+void print_in_order(Node *node)
 {
     if (node)
     {
-        inorder(node->left);
-        std::cout << (void *)node << " : " << node->value << std::endl;
-        inorder(node->right);
+        print_in_order(node->left);
+        std::cout << node->value << " ";
+        print_in_order(node->right);
     }
 }
 
-void free_node(Node *node)
+void delete_tree(Node *node)
 {
     if (node == NULL)
         return;
     if (node->left)
-        free_node(node->left);
+        delete_tree(node->left);
     if (node->right)
-        free_node(node->right);
+        delete_tree(node->right);
     delete node;
 }
 
 Node *delete_node(Node *root, int value)
 {
-    if (root == NULL)
+    Node *ret;
+    if (!root)
         return root;
     if (root->value == value)
     {
         if (root->left == NULL)
         {
-            Node *right = root->right;
+            ret = root->right;
             delete root;
-            return right;
+            return ret;
         }
         else if (root->right == NULL)
         {
-            Node *left = root->left;
+            ret = root->left;
             delete root;
-            return left;
+            return ret;
         }
-        
-        Node *Parent = root;
+        Node *prev = root;
         Node *curr = root->right;
-
-        while (curr->left)
+        while (curr->left != NULL)
         {
-            Parent = curr;
+            prev = curr;
             curr = curr->left;
         }
-
-        if (Parent != root)
-            Parent->left = curr->right;
+        if (prev == root)
+            prev->right = curr->right;
         else
-            Parent->right = curr->right;
-
+            prev->left = curr->right;
         root->value = curr->value;
         delete curr;
     }
-    if (root->value > value)
+    else if (root->value > value)
         root->left = delete_node(root->left, value);
-    if (root->value < value)
+    else if (root->value < value)
         root->right = delete_node(root->right, value);
     return root;
 }
@@ -120,25 +117,19 @@ Node *delete_node(Node *root, int value)
 int main(void)
 {
     int len = 10;
-    std::cout << "       ";
     int *nums = generate_random_numbers(len);
-
     Node *node = NULL;
     for (int i = 0; i < len; i++)
         node = recursive_insertion(node, nums[i]);
 
-    std::cout << "Before deletion : " << std::endl;
-    inorder(node);
+    // print in order
+    print_in_order(node);
     std::cout << std::endl;
 
-    node = delete_node(node, nums[1]);
-    std::cout << "Delete " << nums[1] << std::endl;
+    std::cout << "delete: " << nums[0] << std::endl;
+    delete_node(node, nums[0]);
+    print_in_order(node);
     std::cout << std::endl;
-
-    std::cout << "After deletion : " << std::endl;
-    inorder(node);
-    std::cout << std::endl;
-
-    free_node(node);
     delete[] nums;
+    delete_tree(node);
 }
