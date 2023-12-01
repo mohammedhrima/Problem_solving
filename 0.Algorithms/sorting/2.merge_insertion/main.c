@@ -28,7 +28,7 @@ void mergeInsertion(int *arr, int len)
     }
     else if (len >= 2)
     {
-        // insetion
+        // insertion
         for (int i = 1; i < len; i++)
         {
             int curr = arr[i];
